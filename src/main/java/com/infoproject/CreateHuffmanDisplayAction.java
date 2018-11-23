@@ -18,13 +18,11 @@ public class CreateHuffmanDisplayAction implements ActionListener{
     
     private final JTextArea ensembleTextArea;
     private final JTextArea probabilitiesTextArea;
-    private final JFrame display;
 
     public CreateHuffmanDisplayAction(JTextArea ensembleTextArea, 
-            JTextArea probabilitiesTextArea, JFrame display){
+            JTextArea probabilitiesTextArea){
         this.ensembleTextArea = ensembleTextArea;
         this.probabilitiesTextArea = probabilitiesTextArea;
-        this.display = display;
     }
     
     @Override
