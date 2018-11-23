@@ -50,7 +50,7 @@ public final class Display extends JFrame{
         button = new JButton("Click To Create Arrays");
         button.setBounds(TEXT_AREA_X, BUTTON_Y, BUTTON_WIDTH, BUTTON_HEIGHT);
         button.addActionListener(new CreateHuffmanDisplayAction(ensembleTextArea,
-            probabilitiesTextArea)); 
+            probabilitiesTextArea, this)); 
         add(ensembleTextArea);
         add(probabilitiesTextArea);
         add(button);

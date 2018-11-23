@@ -7,6 +7,7 @@ package com.infoproject;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import javax.swing.JFrame;
 import javax.swing.JTextArea;
 
 /**
@@ -17,11 +18,13 @@ public class CreateHuffmanDisplayAction implements ActionListener{
     
     private final JTextArea ensembleTextArea;
     private final JTextArea probabilitiesTextArea;
+    private final JFrame display;
 
     public CreateHuffmanDisplayAction(JTextArea ensembleTextArea, 
-            JTextArea probabilitiesTextArea){
+            JTextArea probabilitiesTextArea, JFrame display){
         this.ensembleTextArea = ensembleTextArea;
         this.probabilitiesTextArea = probabilitiesTextArea;
+        this.display = display;
     }
     
     @Override
