@@ -18,7 +18,7 @@ import javax.swing.JTextArea;
  */
 public final class Display extends JFrame{
     
-    JLabel l1,l2;
+    JLabel l1,l2,b1,b2,b3,b4;
     JTextArea ensembleTextArea;
     JTextArea probabilitiesTextArea;
     JButton button;
@@ -44,6 +44,7 @@ public final class Display extends JFrame{
         l2 = new JLabel("Enter comma separated probabilities:");
         l2.setBounds(TEXT_AREA_X, TEXT_AREA_TWO_Y - TEXT_AREA_HEIGHT, 
                 TEXT_AREA_WIDTH, BUTTON_HEIGHT); 
+        setBracketLabels();
         ensembleTextArea = new JTextArea();
         ensembleTextArea.setBounds(TEXT_AREA_X, TEXT_AREA_ONE_Y, 
                 TEXT_AREA_WIDTH, TEXT_AREA_HEIGHT);
@@ -56,8 +57,25 @@ public final class Display extends JFrame{
             probabilitiesTextArea));
         add(l1);
         add(l2);
+        add(b1);
+        add(b2);
+        add(b3);
+        add(b4);
         add(ensembleTextArea);
         add(probabilitiesTextArea);
         add(button);
+    }
+    
+    private void setBracketLabels(){
+        b1 = new JLabel("{");
+        b1.setBounds(TEXT_AREA_X - 8, TEXT_AREA_ONE_Y, 5, TEXT_AREA_HEIGHT);
+        b2 = new JLabel("}");
+        b2.setBounds(TEXT_AREA_X + TEXT_AREA_WIDTH + 5, TEXT_AREA_ONE_Y, 
+                5, TEXT_AREA_HEIGHT);
+        b3 = new JLabel("{");
+        b3.setBounds(TEXT_AREA_X - 8, TEXT_AREA_TWO_Y, 5, TEXT_AREA_HEIGHT);
+        b4 = new JLabel("}");
+        b4.setBounds(TEXT_AREA_X + TEXT_AREA_WIDTH + 5, TEXT_AREA_TWO_Y, 
+                5, TEXT_AREA_HEIGHT);
     }
 }

@@ -27,7 +27,7 @@ public class CreateHuffmanDisplayAction implements ActionListener{
     
     @Override
     public void actionPerformed(ActionEvent e) {
-        String message = String.format("textFieldA='%s', textFieldB='%s'",
+        String message = String.format("{'%s'}, {'%s'}",
                   ensembleTextArea.getText(), probabilitiesTextArea.getText());
               System.out.println(message);
     }
