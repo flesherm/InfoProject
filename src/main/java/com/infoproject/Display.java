@@ -24,7 +24,7 @@ public final class Display extends JFrame{
     
     
     public void initializeComponents() { 
-        setTitle("M. Flesher Info Engineering");
+        setTitle("M. Flesher Info Engineering.");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLayout(new FlowLayout());
         setSize(new Dimension(840, 680));
