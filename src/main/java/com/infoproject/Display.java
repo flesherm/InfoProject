@@ -7,9 +7,12 @@ package com.infoproject;
 
 import static com.infoproject.Constants.*;
 import java.awt.Dimension;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JTextArea;
 
 /**
@@ -46,6 +49,8 @@ public final class Display extends JFrame{
                 TEXT_AREA_WIDTH, TEXT_AREA_HEIGHT);
         button = new JButton("Click To Create Arrays");
         button.setBounds(TEXT_AREA_X, BUTTON_Y, BUTTON_WIDTH, BUTTON_HEIGHT);
+        button.addActionListener(new CreateHuffmanDisplayAction(ensembleTextArea,
+            probabilitiesTextArea)); 
         add(ensembleTextArea);
         add(probabilitiesTextArea);
         add(button);

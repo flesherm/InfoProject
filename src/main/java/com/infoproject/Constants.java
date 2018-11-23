@@ -26,4 +26,6 @@ public class Constants {
     public static final int BUTTON_Y = TEXT_AREA_TWO_Y + 
             (TEXT_AREA_HEIGHT * 2);
     
+    public static final String TEXT_AREA_ONE_HINT = "Enter ensemble here";
+    public static final String TEXT_AREA_TWO_HINT = "Enter probabilities here";
 }
