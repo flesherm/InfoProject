@@ -20,7 +20,6 @@ public class Demo {
         SwingUtilities.invokeLater(new Runnable() {
             @Override
             public void run() {
-                // Create an instance of the DateSelector
                 Display demo = new Display();
                 demo.setVisible(true);
             }
