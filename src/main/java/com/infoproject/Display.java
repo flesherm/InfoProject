@@ -5,18 +5,23 @@
  */
 package com.infoproject;
 
-import java.awt.Color;
+import static com.infoproject.Constants.*;
 import java.awt.Dimension;
-import java.awt.FlowLayout;
-import java.time.DayOfWeek;
-import java.time.LocalTime;
+import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JTextArea;
 
 /**
  *
  * @author matthewflesher
  */
 public final class Display extends JFrame{
+    
+    JLabel labelOne;
+    JTextArea ensembleTextArea;
+    JTextArea probabilitiesTextArea;
+    JButton button;
     
     public Display(){
         initializeComponents();
@@ -26,8 +31,23 @@ public final class Display extends JFrame{
     public void initializeComponents() { 
         setTitle("M. Flesher Info Engineering.");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setLayout(new FlowLayout());
-        setSize(new Dimension(840, 680));
+        setInputBoxes();
+        setLayout(null);
+        setSize(new Dimension(FRAME_WIDTH, FRAME_HEIGHT));
         setLocationRelativeTo(null);
+    }
+    
+    public void setInputBoxes(){
+        ensembleTextArea = new JTextArea();
+        ensembleTextArea.setBounds(TEXT_AREA_X, TEXT_AREA_ONE_Y, 
+                TEXT_AREA_WIDTH, TEXT_AREA_HEIGHT);
+        probabilitiesTextArea = new JTextArea();
+        probabilitiesTextArea.setBounds(TEXT_AREA_X, TEXT_AREA_TWO_Y, 
+                TEXT_AREA_WIDTH, TEXT_AREA_HEIGHT);
+        button = new JButton("Click To Create Arrays");
+        button.setBounds(TEXT_AREA_X, BUTTON_Y, BUTTON_WIDTH, BUTTON_HEIGHT);
+        add(ensembleTextArea);
+        add(probabilitiesTextArea);
+        add(button);
     }
 }
