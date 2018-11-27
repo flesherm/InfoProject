@@ -69,9 +69,26 @@ public class HuffmanEncoderTest
         System.out.println("testCreatePriorityQueue");
         double[] p = {.2,.15,.25,.25,.15};
         HuffmanEncoder huff = new HuffmanEncoder(p);
-        huff.createQ(p);
-        System.out.println(huff.getPq().size());
-        assertEquals((Double) huff.getPq().poll(), p[1], 0.000);
+        huff.sort(p);
+        for(int i = 0; i < p.length; i++){
+            System.out.println(p[i]);
+        }
+        assertEquals(.15, p[0], 0.0000);
+    }
+    
+    @Test
+    public void testCreateNewArray()
+    {
+        System.out.println("testCreateNewArray");
+        double[] p = {.2,.15,.25,.25,.15};
+        double[] expected = {.2,.25,.25,.3};
+        HuffmanEncoder huff = new HuffmanEncoder(p);
+        huff.sort(p);
+        double[] newP = huff.createNewArray(p);
+        for(int i = 0; i < newP.length; i++){
+            System.out.println(newP[i]);
+        }
+        assertTrue(Arrays.equals(expected, newP));
     }
     
 }

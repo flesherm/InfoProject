@@ -29,14 +29,24 @@ public class HuffmanEncoder
         return binaryEncodings;
     }
     
-    public void createQ(double[] p){
-        List<Double> probs = new ArrayList(Arrays.asList(p));
-        pq = new PriorityQueue(p.length, new HuffmanComparator());
-        pq.addAll(probs);
+    public void sort(double[] p){
+        Arrays.sort(p);
     }
     
-    public double[] createNewArray(double[] probs){
-        return null;
+    public double[] createNewArray(double[] sortedP){
+        if(sortedP.length > 1){
+            double[] newP = new double[sortedP.length - 1];
+            //set 0 index to the sum of the two lowest values
+            newP[0] = sortedP[0] + sortedP[1];
+            //add the rest
+            for(int i = 2; i < sortedP.length; i++){
+                newP[i-1] = sortedP[i];
+            }
+            sort(newP);
+            return newP;
+        }else{
+            return sortedP;
+        }
     }
 
     /**
