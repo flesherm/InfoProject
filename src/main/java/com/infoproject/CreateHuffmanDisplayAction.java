@@ -35,6 +35,8 @@ public class CreateHuffmanDisplayAction implements ActionListener{
         if(ArrayParserUtils.arraysAreSameLength(ensemble, probs)){
             //convert probs to array of doubles
             double[] p = ArrayParserUtils.parseIntoArrayOfDoubles(probs);
+            HuffmanEncoder huffman = new HuffmanEncoder(p);
+            String[] binaryEncodings = huffman.encodeHuffman();
             //Calculate Entropy
             double[] ent = EntropyCalculator.calculateEntropyOfEach(p);
             ArrayParserUtils.printDoubleArray(ent);
