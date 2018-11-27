@@ -5,11 +5,7 @@
  */
 package com.infoproject;
 
-import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Collections;
-import java.util.List;
-import java.util.PriorityQueue;
 
 /**
  *
@@ -18,7 +14,6 @@ import java.util.PriorityQueue;
 public class HuffmanEncoder
 {
     private double[] p;
-    private PriorityQueue pq;
     
     public HuffmanEncoder(double[] p){
         this.p = p;
@@ -27,6 +22,10 @@ public class HuffmanEncoder
     public String[] encodeHuffman(){
         String[] binaryEncodings = new String[p.length];
         return binaryEncodings;
+    }
+    
+    public void createTree(){
+        //TODO: implement tree
     }
     
     public void sort(double[] p){
@@ -47,13 +46,5 @@ public class HuffmanEncoder
         }else{
             return sortedP;
         }
-    }
-
-    /**
-     * @return the pq
-     */
-    public PriorityQueue getPq()
-    {
-        return pq;
     }
 }
