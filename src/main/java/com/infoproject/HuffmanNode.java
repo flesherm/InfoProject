@@ -12,16 +12,16 @@ package com.infoproject;
 public class HuffmanNode
 {
     double prob;
-    String e; // the character assigned from the ensemble
+    String character; // the character assigned from the ensemble
     
-    private String bit; // the bits assigned
+    private String bitString; // the bits assigned
         
     private HuffmanNode left;
     private HuffmanNode right;
     
-    public HuffmanNode(double prob, String e){
+    public HuffmanNode(double prob, String character){
         this.prob = prob;
-        this.e = e;
+        this.character = character;
     }
     
     public boolean isLeaf(){
@@ -30,17 +30,17 @@ public class HuffmanNode
     }
     
     /**
-     * @return the bit
+     * @return the bitString
      */
-    public String getBit() {
-        return bit;
+    public String getBitString() {
+        return bitString;
     }
 
     /**
-     * @param bit the bit to set
+     * @param bitString the bitString to set
      */
-    public void setBit(String bit) {
-        this.bit = bit;
+    public void setBitString(String bitString) {
+        this.bitString = bitString;
     }
 
     /**

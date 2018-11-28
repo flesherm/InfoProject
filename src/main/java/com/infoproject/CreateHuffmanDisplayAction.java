@@ -43,7 +43,7 @@ public class CreateHuffmanDisplayAction implements ActionListener{
             double entEns = EntropyCalculator.calculateEntropyOfEnsemble(p);
             System.out.println("Entropy of ensemble: " + EntropyCalculator
                     .roundTo4decimalPoints(entEns));
-            //TODO: Display values and entropy
+            //TODO: Display values and entropy and L
         }else {
             //TODO: Display message saying they are not the same
         }
