@@ -35,7 +35,7 @@ public class CreateHuffmanDisplayAction implements ActionListener{
         if(ArrayParserUtils.arraysAreSameLength(ensemble, probs)){
             //convert probs to array of doubles
             double[] p = ArrayParserUtils.parseIntoArrayOfDoubles(probs);
-            HuffmanEncoder huffman = new HuffmanEncoder(p);
+            HuffmanEncoder huffman = new HuffmanEncoder(p, ensemble);
             String[] binaryEncodings = huffman.encodeHuffman();
             //Calculate Entropy
             double[] ent = EntropyCalculator.calculateEntropyOfEach(p);
@@ -43,9 +43,9 @@ public class CreateHuffmanDisplayAction implements ActionListener{
             double entEns = EntropyCalculator.calculateEntropyOfEnsemble(p);
             System.out.println("Entropy of ensemble: " + EntropyCalculator
                     .roundTo4decimalPoints(entEns));
-            //Display values and entropy
+            //TODO: Display values and entropy
         }else {
-            //Display message saying they are not the same
+            //TODO: Display message saying they are not the same
         }
         String message = String.format("{'%s'}, {'%s'}", ens, prob);
         System.out.println(message);

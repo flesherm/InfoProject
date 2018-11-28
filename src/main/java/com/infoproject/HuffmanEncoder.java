@@ -6,6 +6,8 @@
 package com.infoproject;
 
 import java.util.Arrays;
+import java.util.PriorityQueue;
+import java.util.Queue;
 
 /**
  *
@@ -13,10 +15,12 @@ import java.util.Arrays;
  */
 public class HuffmanEncoder
 {
-    private double[] p;
+    private final double[] p;
+    private final String[] ensemble;
     
-    public HuffmanEncoder(double[] p){
+    public HuffmanEncoder(double[] p, String[] ensemble){
         this.p = p;
+        this.ensemble = ensemble;
     }
     
     public String[] encodeHuffman(){
@@ -26,6 +30,22 @@ public class HuffmanEncoder
     
     public void createTree(){
         //TODO: implement tree
+        // 1. fill priority queue
+        Queue pq = createPriorityQ(p);
+        // 3. while queue length > 1
+        //       take lowest and assign second lowest left
+        //       setNode bit
+        //       setNode left
+        //       setNode right
+    }
+    
+    public PriorityQueue createPriorityQ(double[] p){
+        PriorityQueue pq = new PriorityQueue(p.length, new HuffmanComparator());
+        for(int i = 0; i < p.length; i++){
+            HuffmanNode node = new HuffmanNode(p[i], ensemble[i]);
+            pq.add(node);
+        }
+        return pq;
     }
     
     public void sort(double[] p){
