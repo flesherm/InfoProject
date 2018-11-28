@@ -6,8 +6,10 @@
 package com.infoproject;
 
 import java.util.Arrays;
+import java.util.HashSet;
 import java.util.PriorityQueue;
 import java.util.Queue;
+import java.util.Set;
 
 /**
  *
@@ -25,7 +27,20 @@ public class HuffmanEncoder
     
     public String[] encodeHuffman(){
         String[] binaryEncodings = new String[p.length];
+        traverseTree(binaryEncodings);
         return binaryEncodings;
+    }
+    
+    public void traverseTree(String[] binaryEncodings){
+        HuffmanNode root = createTree();
+        if(!root.isLeaf()){
+            for(int i = 0; i < ensemble.length; i++){
+                Set<HuffmanNode> leavesSeen = new HashSet<>();
+                while(leavesSeen.size() < ensemble.length){
+                    
+                }
+            }
+        }
     }
     
     public HuffmanNode createTree(){

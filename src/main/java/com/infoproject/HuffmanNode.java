@@ -47,7 +47,10 @@ public class HuffmanNode
      * @return the left
      */
     public HuffmanNode getLeft() {
-        return left;
+        if(left != null){
+            return left;
+        }
+        return null;
     }
 
     /**
@@ -61,7 +64,10 @@ public class HuffmanNode
      * @return the right
      */
     public HuffmanNode getRight() {
-        return right;
+        if(right != null){
+            return right;
+        }
+        return null;
     }
 
     /**

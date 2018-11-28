@@ -50,7 +50,7 @@ public class HuffmanEncoderTest
     /**
      * Test of encodeHuffman method, of class HuffmanEncoder.
      */
-    @Ignore
+//    @Ignore
     @Test
     public void testEncodeHuffman()
     {
@@ -82,6 +82,7 @@ public class HuffmanEncoderTest
         assertFalse(root.getRight().isLeaf());
         assertTrue(root.getRight().getLeft().isLeaf());
         assertTrue(root.getRight().getRight().isLeaf());
+        assertEquals(root.getRight().getRight().getLeft(), null);
         assertTrue(root.getLeft().getLeft().getLeft().isLeaf());
         assertTrue(root.getRight().getRight().isLeaf());
         assertTrue(root.getLeft().getRight().character.equals("a"));
