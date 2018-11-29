@@ -18,6 +18,7 @@ public class HuffmanNode
         
     private HuffmanNode left;
     private HuffmanNode right;
+    private HuffmanNode parent;
     
     public HuffmanNode(double prob, String character){
         this.prob = prob;
@@ -75,6 +76,22 @@ public class HuffmanNode
      */
     public void setRight(HuffmanNode right) {
         this.right = right;
+    }
+
+    /**
+     * @return the parent
+     */
+    public HuffmanNode getParent()
+    {
+        return parent;
+    }
+
+    /**
+     * @param parent the parent to set
+     */
+    public void setParent(HuffmanNode parent)
+    {
+        this.parent = parent;
     }
     
 }

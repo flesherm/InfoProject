@@ -5,9 +5,12 @@
  */
 package com.infoproject;
 
+import utils.ArrayParserUtils;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.Map;
 import javax.swing.JTextArea;
+import utils.MapUtils;
 
 /**
  *
@@ -37,7 +40,8 @@ public class CreateHuffmanDisplayAction implements ActionListener{
         if(ArrayParserUtils.arraysAreSameLength(ensemble, probs) &&
                 ArrayParserUtils.sumIsOne(p)){
             HuffmanEncoder huffman = new HuffmanEncoder(p, ensemble);
-            String[] binaryEncodings = huffman.encodeHuffman();
+            Map<String, String> encodings = huffman.encodeHuffman();
+            MapUtils.printMap(encodings);
             //Calculate Entropy
             double[] ent = EntropyCalculator.calculateEntropyOfEach(p);
             ArrayParserUtils.printDoubleArray(ent);

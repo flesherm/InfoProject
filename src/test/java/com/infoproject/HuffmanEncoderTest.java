@@ -5,6 +5,8 @@
  */
 package com.infoproject;
 
+import java.util.HashMap;
+import java.util.Map;
 import java.util.PriorityQueue;
 import org.junit.After;
 import org.junit.AfterClass;
@@ -56,9 +58,35 @@ public class HuffmanEncoderTest
     {
         System.out.println("encodeHuffman");
         HuffmanEncoder huff = new HuffmanEncoder(p, ensemble);
-        String[] expResult = {"01","10","11","001","000"};
-        String[] result = huff.encodeHuffman();
-        assertArrayEquals(expResult, result);
+        Map<String, String> expMap = new HashMap<>();
+        expMap.put("a", "01");
+        expMap.put("b", "10");
+        expMap.put("c", "11");
+        expMap.put("d", "001");
+        expMap.put("e", "000");
+        Map<String, String> result = huff.encodeHuffman();
+        assertTrue(expMap.equals(result));
+    }
+    
+//    @Ignore
+    @Test
+    public void testTraverseTree()
+    {
+        System.out.println("testTraverseTree");
+        HuffmanEncoder huff = new HuffmanEncoder(p, ensemble);
+        HuffmanNode h = huff.createTree();
+        huff.traverseTree(h);
+        assertTrue(h.getLeft().getRight().character.equals("a"));
+        assertTrue(h.getRight().getRight().character.equals("c"));
+        assertTrue(h.getRight().getLeft().character.equals("b"));
+        assertTrue(h.getLeft().getLeft().getRight().character.equals("d"));
+        assertTrue(h.getLeft().getLeft().getLeft().character.equals("e"));
+        
+        assertEquals("01", h.getLeft().getRight().getBitString());
+        assertTrue(h.getRight().getRight().getBitString().equals("11"));
+        assertTrue(h.getRight().getLeft().getBitString().equals("10"));
+        assertTrue(h.getLeft().getLeft().getRight().getBitString().equals("001"));
+        assertTrue(h.getLeft().getLeft().getLeft().getBitString().equals("000"));
     }
     
 //    @Ignore

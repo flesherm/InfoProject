@@ -6,7 +6,9 @@
 package com.infoproject;
 
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.HashSet;
+import java.util.Map;
 import java.util.PriorityQueue;
 import java.util.Queue;
 import java.util.Set;
@@ -19,27 +21,38 @@ public class HuffmanEncoder
 {
     private final double[] p;
     private final String[] ensemble;
+    private final Map<String, String> encodings = new HashMap<>();;
     
     public HuffmanEncoder(double[] p, String[] ensemble){
         this.p = p;
         this.ensemble = ensemble;
     }
     
-    public String[] encodeHuffman(){
-        String[] binaryEncodings = new String[p.length];
-        traverseTree(binaryEncodings);
-        return binaryEncodings;
+    public Map<String, String> encodeHuffman(){    
+        HuffmanNode root = createTree();
+        traverseTree(root);
+        return encodings;
     }
     
-    public void traverseTree(String[] binaryEncodings){
-        HuffmanNode root = createTree();
-        if(!root.isLeaf()){
-            for(int i = 0; i < ensemble.length; i++){
-                Set<HuffmanNode> leavesSeen = new HashSet<>();
-                while(leavesSeen.size() < ensemble.length){
-                    
-                }
+    public void traverseTree(HuffmanNode root){
+        if(root.isLeaf()){
+            String bitString = root.getBitString();
+            HuffmanNode parent = root.getParent();
+            while(parent.getBitString() != null){
+                bitString = parent.getBitString() + bitString;
+                parent = parent.getParent();
             }
+            root.setBitString(bitString);
+            //Add to existing String[] array of encodings
+            encodings.put(root.character, root.getBitString());
+//            System.out.println(root.character + " : " + bitString);
+        }
+        if(root.getLeft() != null){
+            traverseTree(root.getLeft());
+        }
+        
+        if(root.getRight() != null){
+            traverseTree(root.getRight());
         }
     }
     
@@ -60,6 +73,8 @@ public class HuffmanEncoder
             newNode.setLeft(secondLowestProbNode);
         //setNode left to second lowest
             newNode.setRight(lowestProbNode);
+            secondLowestProbNode.setParent(newNode);
+            lowestProbNode.setParent(newNode);
             pq.add(newNode);
         }
         HuffmanNode root = (HuffmanNode) pq.poll();
