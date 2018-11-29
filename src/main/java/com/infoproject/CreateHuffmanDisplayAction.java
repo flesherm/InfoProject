@@ -31,10 +31,11 @@ public class CreateHuffmanDisplayAction implements ActionListener{
         //Parse into arrays
         String[] ensemble = ArrayParserUtils.parseCommaSeparatedStrings(ens);
         String[] probs = ArrayParserUtils.parseCommaSeparatedStrings(prob);
-        //Check they are same size
-        if(ArrayParserUtils.arraysAreSameLength(ensemble, probs)){
-            //convert probs to array of doubles
-            double[] p = ArrayParserUtils.parseIntoArrayOfDoubles(probs);
+        double[] p = ArrayParserUtils.parseIntoArrayOfDoubles(probs);
+        //convert probs to array of doubles
+        //Check they are same size and the probs add up to 1.0
+        if(ArrayParserUtils.arraysAreSameLength(ensemble, probs) &&
+                ArrayParserUtils.sumIsOne(p)){
             HuffmanEncoder huffman = new HuffmanEncoder(p, ensemble);
             String[] binaryEncodings = huffman.encodeHuffman();
             //Calculate Entropy
@@ -46,6 +47,8 @@ public class CreateHuffmanDisplayAction implements ActionListener{
             //TODO: Display values and entropy and L
         }else {
             //TODO: Display message saying they are not the same
+            System.out.println("The length of the arrays must be equal and the sum "
+                    + "of the probabilities must add up to 1.0.");
         }
         String message = String.format("{'%s'}, {'%s'}", ens, prob);
         System.out.println(message);
