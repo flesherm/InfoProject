@@ -17,6 +17,8 @@ public class Constants {
     public static final int BUTTON_WIDTH = 300;
     public static final int BUTTON_HEIGHT = 30;
     
+    public static final int M_WIDTH = 160;
+    
     public static final int TEXT_AREA_X = (FRAME_WIDTH / 2) 
             - (TEXT_AREA_WIDTH / 2);
     

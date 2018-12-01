@@ -5,7 +5,8 @@
  */
 package com.infoproject;
 
-import javax.swing.SwingUtilities;
+//import java.awt.EventQueue;
+import java.awt.EventQueue;
 
 /**
  *
@@ -17,13 +18,11 @@ public class Demo {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        SwingUtilities.invokeLater(new Runnable() {
-            @Override
-            public void run() {
-                Display demo = new Display();
-                demo.setVisible(true);
-            }
+        EventQueue.invokeLater(() -> {
+            GameFrame ex = new GameFrame();
+            ex.setVisible(true);
         });
+    
     }
     
 }
