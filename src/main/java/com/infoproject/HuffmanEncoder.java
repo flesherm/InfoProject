@@ -26,11 +26,11 @@ public class HuffmanEncoder
         this.ensemble = ensemble;
     }
     
-    public Map<String, String> encodeHuffman(){    
-        HuffmanNode root = createTree();
+    public Map<String, String> encodeHuffman(HuffmanNode root){    
         traverseTree(root);
         return encodings;
     }
+    
     
     public void traverseTree(HuffmanNode root){
         if(root.isLeaf()){

@@ -37,6 +37,15 @@ public class ArrayParserUtils {
         return sum == 1.0;
     }
     
+    public static boolean areAllPositive(double[] probs){
+        for(int i = 0; i < probs.length; i++){
+            if(probs[i] < 0){
+                return false;
+            }
+        }
+        return true;
+    }
+    
     public static boolean arraysAreSameLength(String[] one, String[] two){
         return one.length == two.length;
     }

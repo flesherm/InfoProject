@@ -60,5 +60,19 @@ public class ArrayParserUtilsTest
         assertEquals(expResult, result);
         assertEquals(expResult2, result2);
     }
+    
+    @Test
+    public void testAllPositive()
+    {
+        System.out.println("sumIsOne");
+        double[] probs = {1.0, -0.3};
+        double[] probs2 = {0.7, 0.3};
+        boolean expResult = false;
+        boolean result = ArrayParserUtils.areAllPositive(probs);
+        boolean expResult2 = true;
+        boolean result2 = ArrayParserUtils.areAllPositive(probs2);
+        assertEquals(expResult, result);
+        assertEquals(expResult2, result2);
+    }
 
 }

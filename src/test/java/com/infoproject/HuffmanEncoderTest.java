@@ -58,13 +58,14 @@ public class HuffmanEncoderTest
     {
         System.out.println("encodeHuffman");
         HuffmanEncoder huff = new HuffmanEncoder(p, ensemble);
+        HuffmanNode root = huff.createTree();
         Map<String, String> expMap = new HashMap<>();
         expMap.put("a", "01");
         expMap.put("b", "10");
         expMap.put("c", "11");
         expMap.put("d", "001");
         expMap.put("e", "000");
-        Map<String, String> result = huff.encodeHuffman();
+        Map<String, String> result = huff.encodeHuffman(root);
         assertTrue(expMap.equals(result));
     }
     

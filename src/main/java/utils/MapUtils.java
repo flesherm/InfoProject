@@ -5,6 +5,7 @@
  */
 package utils;
 
+import java.util.HashMap;
 import java.util.Map;
 
 /**
@@ -19,5 +20,24 @@ public class MapUtils
                 System.out.println(k + ": " + map.get(k));
             }
         }
+    }
+    
+    public static String createMapString(Map<String, String> map){
+        String m = "";
+        for(String k : map.keySet()){
+            if(map.get(k) != null){
+                m = m + k + ": " + map.get(k) + "\n";
+            }
+        }
+        return m;
+    }
+    
+    public static Map<String, String> createMap(String[] ens, 
+            String[] probs){
+        Map<String, String> map = new HashMap<>();
+        for(int i = 0; i < probs.length; i++){
+            map.put(ens[i], probs[i]);
+        }
+        return map;
     }
 }
