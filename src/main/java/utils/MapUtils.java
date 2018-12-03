@@ -5,6 +5,7 @@
  */
 package utils;
 
+import com.infoproject.HuffmanNode;
 import java.util.HashMap;
 import java.util.Map;
 

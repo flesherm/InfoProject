@@ -149,18 +149,4 @@ public class HuffmanEncoderTest
         assertEquals(.15, p[0], 0.0000);
     }
     
-//    @Test
-//    public void testCreateNewArray()
-//    {
-//        System.out.println("testCreateNewArray");
-//        double[] expected = {.2,.25,.25,.3};
-//        HuffmanEncoder huff = new HuffmanEncoder(p, ensemble);
-//        huff.sort(p);
-//        double[] newP = huff.createNewArray(p);
-//        for(int i = 0; i < newP.length; i++){
-//            System.out.println(newP[i]);
-//        }
-//        assertTrue(Arrays.equals(expected, newP));
-//    }
-    
 }

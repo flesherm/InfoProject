@@ -13,21 +13,20 @@ import java.awt.Graphics;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.Map;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.JComponent;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextArea;
 import javax.swing.Timer;
 import utils.ArrayParserUtils;
-import utils.MapUtils;
 
 /**
  *
  * @author matthewflesher
  */
-public class GameBoard extends JPanel implements ActionListener{
+public class HuffmanBoard extends JPanel implements ActionListener{
     
     JLabel l1,l2,b1,b2,b3,b4;
     JTextArea ensembleTextArea;
@@ -50,7 +49,7 @@ public class GameBoard extends JPanel implements ActionListener{
     private Timer timer;
     private int x, y;
     
-    public GameBoard(){
+    public HuffmanBoard(){
         setLayout(null);
         setSize(new Dimension(FRAME_WIDTH, FRAME_HEIGHT));
         blue = new Color(0,39,76);
@@ -141,14 +140,16 @@ public class GameBoard extends JPanel implements ActionListener{
     @Override
     public void actionPerformed(ActionEvent e) {
         if (x > (TEXT_AREA_X + TEXT_AREA_WIDTH)) {
-            x=x-2;
+            x=x-1; //moves R2 to the left 2 pixels
         }
-
+        //TODO: display talking bubbles from R2 in this section
+        //TODO: add C3P0 on the left to talk to R2 about Huffman
         repaint();
     }
     
     class HuffmanActionListener implements ActionListener{
         
+        @Override
         public void actionPerformed(ActionEvent e) {
             String ens = ensembleTextArea.getText();
             String prob = probabilitiesTextArea.getText();
@@ -168,18 +169,21 @@ public class GameBoard extends JPanel implements ActionListener{
                 //Check the probabilities array is actually doubles
                 if(areDoubles){
                 //Check they are same size and the probs add up to 1.0
+                
+                //TODO: check ensemble less than 26 and put message on UI
                     if(ArrayParserUtils.arraysAreSameLength(ensemble, probs) &&
-                            ArrayParserUtils.sumIsOne(p) && ArrayParserUtils.areAllPositive(p)){
+                            ArrayParserUtils.sumIsOne(p) && ArrayParserUtils.areAllPositive(p)
+                            ){
+                        
                         HuffmanEncoder huffman = new HuffmanEncoder(p, ensemble);
                         HuffmanNode root = huffman.createTree();
-                        Map<String, String> inputMap = MapUtils.createMap(ensemble, probs);
-                        String inputMapString = MapUtils.createMapString(inputMap);
                         //TODO: set Bits graphically
-
-                        //Display encodings
-                        Map<String, String> encodings = huffman.encodeHuffman(root);
-                        MapUtils.printMap(encodings);
-                        String encodingsString = MapUtils.createMapString(encodings);
+                        HuffmanDemoComponent demo = new HuffmanDemoComponent();
+                        for(JComponent j : demo.createDemoComponents(root)){
+                            add(j);
+                        }
+                        //TODO: create List of Lines in Demo Component and paint them in paintComponent
+                        
                         //Calculate Entropy
                         double[] ent = EntropyCalculator.calculateEntropyOfEach(p);
                         ArrayParserUtils.printDoubleArray(ent);
@@ -187,9 +191,7 @@ public class GameBoard extends JPanel implements ActionListener{
                         textDisplay = String.format("You entered: {'%s'}, {'%s'}\n"
                                     + "Entropy of ensemble: " + EntropyCalculator
                                     .roundTo4decimalPoints(entEns) + "\n" 
-                                    + "Entropy of characters: " + makeString(ent) + "\n"
-                                    + inputMapString + "\nHuffman Encoding: \n" 
-                                    + encodingsString, 
+                                    + "Entropy of characters: " + makeString(ent), 
                                     ens, prob);
                         System.out.println(textDisplay);
                         System.out.println("Entropy of ensemble: " + EntropyCalculator

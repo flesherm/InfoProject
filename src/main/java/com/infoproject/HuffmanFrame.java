@@ -5,9 +5,9 @@ import static com.infoproject.Constants.FRAME_WIDTH;
 import java.awt.Dimension;
 import javax.swing.JFrame;
 
-public final class GameFrame extends JFrame {
+public final class HuffmanFrame extends JFrame {
     
-    public GameFrame() {
+    public HuffmanFrame() {
         initializeComponents();
     }
 
@@ -18,7 +18,7 @@ public final class GameFrame extends JFrame {
         setLayout(null);
         setSize(new Dimension(FRAME_WIDTH, FRAME_HEIGHT));
         setLocationRelativeTo(null);
-        add(new GameBoard());
+        add(new HuffmanBoard());
     }
     
 }

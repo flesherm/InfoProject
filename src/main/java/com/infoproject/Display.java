@@ -18,12 +18,7 @@ import javax.swing.JTextArea;
  */
 public final class Display extends JFrame{
     
-    JLabel l1,l2,b1,b2,b3,b4;
-    JTextArea ensembleTextArea;
-    JTextArea probabilitiesTextArea;
-    JButton button;
-    
-    public Display(){
+public Display(){
         initializeComponents();
     }
     

@@ -19,7 +19,7 @@ public class Demo {
      */
     public static void main(String[] args) {
         EventQueue.invokeLater(() -> {
-            GameFrame ex = new GameFrame();
+            HuffmanFrame ex = new HuffmanFrame();
             ex.setVisible(true);
         });
     
