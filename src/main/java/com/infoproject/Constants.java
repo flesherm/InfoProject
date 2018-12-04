@@ -30,4 +30,5 @@ public class Constants {
     
     public static final String TEXT_AREA_ONE_HINT = "Enter ensemble here";
     public static final String TEXT_AREA_TWO_HINT = "Enter probabilities here";
+    public static final int DISPLAY_Y = BUTTON_Y + 40;
 }

@@ -13,9 +13,9 @@ import java.awt.Graphics;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.List;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
-import javax.swing.JComponent;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextArea;
@@ -32,15 +32,17 @@ public class HuffmanBoard extends JPanel implements ActionListener{
     JTextArea ensembleTextArea;
     JTextArea probabilitiesTextArea;
     JButton button;
+    JButton next;
     Color maize;
     Color blue;
-    
     Image M;
     Image R2;
+    List<JLabel> demoLabels;
+    boolean demo = false;
     
     private String textDisplay = "";
     int fontSize = 18;
-    int DISPLAY_Y = BUTTON_Y + 80;
+    
     Graphics g;
     private final int INITIAL_X = FRAME_WIDTH + 40;
     private final int INITIAL_Y = FRAME_HEIGHT - 500;
@@ -101,7 +103,9 @@ public class HuffmanBoard extends JPanel implements ActionListener{
         probabilitiesTextArea = new JTextArea();
         probabilitiesTextArea.setBounds(TEXT_AREA_X, TEXT_AREA_TWO_Y, 
                 TEXT_AREA_WIDTH, TEXT_AREA_HEIGHT);
+        
         button = new JButton("Huffman Encode");
+        
         button.setForeground(blue);
         button.setBackground(maize);
         button.setContentAreaFilled(true);
@@ -117,6 +121,7 @@ public class HuffmanBoard extends JPanel implements ActionListener{
         add(ensembleTextArea);
         add(probabilitiesTextArea);
         add(button);
+        
     }
     
     private void setBracketLabels(){
@@ -141,6 +146,15 @@ public class HuffmanBoard extends JPanel implements ActionListener{
     public void actionPerformed(ActionEvent e) {
         if (x > (TEXT_AREA_X + TEXT_AREA_WIDTH)) {
             x=x-1; //moves R2 to the left 2 pixels
+        }
+        
+        if(demo && next != null && demoLabels != null && demoLabels.size() > 0){
+            for(JLabel l : demoLabels){
+                l.setForeground(maize);
+                add(l);
+            }
+            button.setText("clear");
+            add(next);
         }
         //TODO: display talking bubbles from R2 in this section
         //TODO: add C3P0 on the left to talk to R2 about Huffman
@@ -173,15 +187,22 @@ public class HuffmanBoard extends JPanel implements ActionListener{
                 //TODO: check ensemble less than 26 and put message on UI
                     if(ArrayParserUtils.arraysAreSameLength(ensemble, probs) &&
                             ArrayParserUtils.sumIsOne(p) && ArrayParserUtils.areAllPositive(p)
-                            ){
-                        
+                            && p.length < 8){
+                        demo = !demo;
                         HuffmanEncoder huffman = new HuffmanEncoder(p, ensemble);
                         HuffmanNode root = huffman.createTree();
                         //TODO: set Bits graphically
-                        HuffmanDemoComponent demo = new HuffmanDemoComponent();
-                        for(JComponent j : demo.createDemoComponents(root)){
-                            add(j);
+                        HuffmanDemoComponent huffDemo = new HuffmanDemoComponent(root, ensemble);
+                        if(demoLabels != null && demoLabels.size() > 0){
+                            for(JLabel l : demoLabels){
+                                remove(l);
+                                remove(next);
+                                button.setText("Huffman Encode");
+                            }
                         }
+                        demoLabels = huffDemo.createDemoLabels();
+                        next = huffDemo.getNextButton();
+                        
                         //TODO: create List of Lines in Demo Component and paint them in paintComponent
                         
                         //Calculate Entropy
@@ -198,8 +219,9 @@ public class HuffmanBoard extends JPanel implements ActionListener{
                                 .roundTo4decimalPoints(entEns));
                     }else {
                         textDisplay = "The length of the arrays must be \n"
-                                + "equal, the sum of the must add up to 1.0,\n"
-                                + "and all of the values must be positive.";
+                                + "equal, the sum of the probabilities must add up to 1.0,\n"
+                                + "all of the values must be positive, \n"
+                                + "and the max characters in the ensemble is 7.";
                         System.out.println(textDisplay);
                     }
                 }else{
@@ -213,7 +235,7 @@ public class HuffmanBoard extends JPanel implements ActionListener{
             repaint();
         }
     }
-    
+   
     private void loadImage() {
         ImageIcon ii = new ImageIcon("src/main/resources/M.png");
         ImageIcon ii2 = new ImageIcon("src/main/resources/r2.png");
