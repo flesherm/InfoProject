@@ -11,7 +11,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.PriorityQueue;
 import javax.swing.JButton;
-import javax.swing.JComponent;
 import javax.swing.JLabel;
 
 /**
