@@ -5,6 +5,8 @@
  */
 package utils;
 
+import java.math.BigDecimal;
+import java.math.RoundingMode;
 import org.apache.commons.math3.util.Precision;
 
 /**
@@ -34,8 +36,17 @@ public class ArrayParserUtils {
         for(int i = 0; i < probs.length; i++){
             sum = sum + probs[i];
         }
+        sum = round(sum, 1);
         return sum == 1.0;
     }
+    
+    private static double round(double value, int places) {
+        if (places < 0) throw new IllegalArgumentException();
+
+        BigDecimal bd = new BigDecimal(Double.toString(value));
+        bd = bd.setScale(places, RoundingMode.HALF_UP);
+        return bd.doubleValue();
+}
     
     public static boolean areAllPositive(double[] probs){
         for(int i = 0; i < probs.length; i++){

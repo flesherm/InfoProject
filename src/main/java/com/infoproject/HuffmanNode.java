@@ -12,7 +12,8 @@ package com.infoproject;
 public class HuffmanNode
 {
     double prob;
-    String character; // the character assigned from the ensemble
+//    public boolean display = true;
+    public String character; // the character assigned from the ensemble
     
     private String bitString; // the bits assigned
         

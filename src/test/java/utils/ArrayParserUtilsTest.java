@@ -53,12 +53,16 @@ public class ArrayParserUtilsTest
         System.out.println("sumIsOne");
         double[] probs = {1.0, 0.3};
         double[] probs2 = {0.7, 0.3};
+        double[] probs3 = {0.6, 0.3, 0.1};
         boolean expResult = false;
         boolean result = ArrayParserUtils.sumIsOne(probs);
         boolean expResult2 = true;
         boolean result2 = ArrayParserUtils.sumIsOne(probs2);
+        boolean expResult3 = true;
+        boolean result3 = ArrayParserUtils.sumIsOne(probs3);
         assertEquals(expResult, result);
         assertEquals(expResult2, result2);
+        assertEquals(expResult3, result3);
     }
     
     @Test
