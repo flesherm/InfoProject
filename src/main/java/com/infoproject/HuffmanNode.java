@@ -20,6 +20,7 @@ public class HuffmanNode
     private HuffmanNode left;
     private HuffmanNode right;
     private HuffmanNode parent;
+    public boolean isParent = false;
     
     public HuffmanNode(double prob, String character){
         this.prob = prob;

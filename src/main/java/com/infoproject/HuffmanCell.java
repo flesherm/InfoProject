@@ -6,6 +6,7 @@
 package com.infoproject;
 
 import javax.swing.JLabel;
+import javax.swing.JTextArea;
 
 /**
  *
@@ -15,6 +16,7 @@ public class HuffmanCell
 {
     private JLabel label;
     private HuffmanNode node;
+    private JTextArea bitTextArea;
 
     /**
      * @return the label
@@ -46,6 +48,22 @@ public class HuffmanCell
     public void setNode(HuffmanNode node)
     {
         this.node = node;
+    }
+
+    /**
+     * @return the bitTextArea
+     */
+    public JTextArea getBitTextArea()
+    {
+        return bitTextArea;
+    }
+
+    /**
+     * @param bitTextArea the bitTextArea to set
+     */
+    public void setBitTextArea(JTextArea bitTextArea)
+    {
+        this.bitTextArea = bitTextArea;
     }
     
 }

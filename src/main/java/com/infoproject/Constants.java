@@ -11,11 +11,13 @@ package com.infoproject;
  */
 public class Constants {
     public static final int FRAME_WIDTH = 840;
-    public static final int FRAME_HEIGHT = 840;
+    public static final int FRAME_HEIGHT = 1000;
     public static final int TEXT_AREA_WIDTH = 300;
     public static final int TEXT_AREA_HEIGHT = 25;
     public static final int BUTTON_WIDTH = 300;
     public static final int BUTTON_HEIGHT = 30;
+    
+    public static final int MAX_CHAR = 6;
     
     public static final int M_WIDTH = 160;
     

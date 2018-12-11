@@ -47,6 +47,7 @@ public class HuffmanBoard extends JPanel implements ActionListener{
     private final int INITIAL_X = FRAME_WIDTH + 40;
     private final int INITIAL_Y = FRAME_HEIGHT - 500;
     private final int DELAY = 25;
+    private List<Line> lineList;
 
     private Timer timer;
     private int x, y;
@@ -77,6 +78,7 @@ public class HuffmanBoard extends JPanel implements ActionListener{
         g.drawImage(M, (FRAME_WIDTH / 2) - (M_WIDTH / 2), 20, null);
         g.drawImage(R2, x, y, null);
         drawText(textDisplay, TEXT_AREA_X, DISPLAY_Y);
+        drawLines();
     }
 
     private void drawText(String text, int x, int y) {
@@ -87,8 +89,17 @@ public class HuffmanBoard extends JPanel implements ActionListener{
         }
     }
     
+    private void drawLines(){
+        if(demo && getLineList() != null){
+            for(Line l : getLineList()){
+                g.setColor(maize);
+                g.drawLine(l.x1, l.y1, l.x2, l.y2);
+            }
+        }
+    }
+    
     private void setInputBoxes(){
-        l1 = new JLabel("Enter a comma separated ensemble:");
+        l1 = new JLabel("Enter a comma separated ensemble (max 5):");
         l1.setForeground(maize);
         l1.setBounds(TEXT_AREA_X, TEXT_AREA_ONE_Y - TEXT_AREA_HEIGHT
                 , TEXT_AREA_WIDTH, BUTTON_HEIGHT); 
@@ -184,10 +195,10 @@ public class HuffmanBoard extends JPanel implements ActionListener{
                 if(areDoubles){
                 //Check they are same size and the probs add up to 1.0
                 
-                //TODO: check ensemble less than 26 and put message on UI
+                //check ensemble less than 6 and put message on UI
                     if(ArrayParserUtils.arraysAreSameLength(ensemble, probs) &&
                             ArrayParserUtils.sumIsOne(p) && ArrayParserUtils.areAllPositive(p)
-                            && p.length < 8){
+                            && p.length < Constants.MAX_CHAR){
                         demo = !demo;
                         HuffmanEncoder huffman = new HuffmanEncoder(p, ensemble);
                         HuffmanNode root = huffman.createTree();
@@ -203,7 +214,8 @@ public class HuffmanBoard extends JPanel implements ActionListener{
                         demoLabels = huffDemo.createDemoLabels();
                         next = huffDemo.getNextButton();
                         
-                        //TODO: create List of Lines in Demo Component and paint them in paintComponent
+                        //get list of Lines in Demo Component and paint them in paintComponent
+                        setLineList(huffDemo.lineList);
                         
                         //Calculate Entropy
                         double[] ent = EntropyCalculator.calculateEntropyOfEach(p);
@@ -221,7 +233,8 @@ public class HuffmanBoard extends JPanel implements ActionListener{
                         textDisplay = "The length of the arrays must be \n"
                                 + "equal, the sum of the probabilities must add up to 1.0,\n"
                                 + "all of the values must be positive, \n"
-                                + "and the max characters in the ensemble is 7.";
+                                + "and the max characters in the ensemble is "
+                                + Constants.MAX_CHAR + ".";
                         System.out.println(textDisplay);
                     }
                 }else{
@@ -250,5 +263,21 @@ public class HuffmanBoard extends JPanel implements ActionListener{
         }
         s = s.substring(0, s.length() - 1) + " }";
         return s;
+    }
+
+    /**
+     * @return the lineList
+     */
+    public List<Line> getLineList()
+    {
+        return lineList;
+    }
+
+    /**
+     * @param lineList the lineList to set
+     */
+    public void setLineList(List<Line> lineList)
+    {
+        this.lineList = lineList;
     }
 }
