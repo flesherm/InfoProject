@@ -284,12 +284,16 @@ public class HuffmanDemoComponent
                         int x2 = x1 + l.getWidth() / 2;
                         int y2 = cells[1][cells[1].length - 1].getLabel().getY() + W/2;
                         Line line = new Line(x1,y1,x2,y2);
-//                        cells[1][col].getNode().setBitString("1");
-////                        changeTreeNodeBitString(root, cells[1][cells[1].length - 1].getNode(),"1");
-//                        createBitLabel(cells[1][cells[1].length - 1], false);
-                        cells[row][col].getNode().setBitString("0");
-//                        changeTreeNodeBitString(root, cells[2][cells[2].length - 1].getNode(),"0");
-                        createBitLabel(cells[row][cells[2].length - 1], true);
+                        HuffmanCell sec = cells[row][col];
+                        if(isLowest(col, sec.getNode()) 
+                                && sec.getNode().getBitString().isEmpty()){
+                            sec.getNode().setBitString("1");
+                            createBitLabel(sec, true);
+                        }else if(isSecondLowest(col, sec.getNode())
+                                && sec.getNode().getBitString().isEmpty()){
+                            sec.getNode().setBitString("0");
+                            createBitLabel(sec, true);
+                        }
                         lineList.add(line);
                     }
                 }
