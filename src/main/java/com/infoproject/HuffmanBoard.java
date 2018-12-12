@@ -18,6 +18,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.Timer;
 import utils.ArrayParserUtils;
@@ -54,7 +55,7 @@ public class HuffmanBoard extends JPanel implements ActionListener{
     
     public HuffmanBoard(){
         setLayout(null);
-        setSize(new Dimension(FRAME_WIDTH, FRAME_HEIGHT));
+        setPreferredSize(new Dimension(800, 1200));
         blue = new Color(0,39,76);
         maize = new Color(255, 203, 5);
         setBackground(blue);
