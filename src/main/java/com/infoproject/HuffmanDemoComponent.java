@@ -253,11 +253,9 @@ public class HuffmanDemoComponent
                             || isLowest(col-1, sec.getNode()))){
                                 if(isLowest(col-1, sec.getNode())){
                                     sec.getNode().setBitString("1");
-//                                    changeTreeNodeBitString(root, sec.getNode(),"1");
                                     createBitLabel(sec, false);
                                 }else if(isSecondLowest(col-1, sec.getNode())){
                                     sec.getNode().setBitString("0");
-//                                    changeTreeNodeBitString(root, sec.getNode(),"0");
                                     createBitLabel(sec, false);
                                 }
                                 if(sec.getNode().getParent().equals(
@@ -266,12 +264,10 @@ public class HuffmanDemoComponent
                                     if(isLowest(col-1, sec.getNode()) 
                                             && sec.getNode().getBitString().isEmpty()){
                                         sec.getNode().setBitString("1");
-//                                        changeTreeNodeBitString(root, sec.getNode(),"1");
                                         createBitLabel(sec, true);
                                     }else if(isSecondLowest(col-1, sec.getNode())
                                             && sec.getNode().getBitString().isEmpty()){
                                         sec.getNode().setBitString("0");
-//                                        changeTreeNodeBitString(root, sec.getNode(),"0");
                                         createBitLabel(sec, true);
                                     }
                                     HuffmanCell parent = current;

@@ -52,7 +52,7 @@ public class HuffmanEncoderTest
     /**
      * Test of encodeHuffman method, of class HuffmanEncoder.
      */
-//    @Ignore
+    @Ignore
     @Test
     public void testEncodeHuffman()
     {
@@ -69,7 +69,7 @@ public class HuffmanEncoderTest
         assertTrue(expMap.equals(result));
     }
     
-//    @Ignore
+    @Ignore
     @Test
     public void testTraverseTree()
     {

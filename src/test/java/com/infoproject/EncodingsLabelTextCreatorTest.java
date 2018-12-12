@@ -70,6 +70,7 @@ public class EncodingsLabelTextCreatorTest
     /**
      * Test of createEncodingsLabelBitString method, of class EncodingsLabel.
      */
+    @Ignore
     @Test
     public void testCreateEncodingsLabelBitString2()
     {
