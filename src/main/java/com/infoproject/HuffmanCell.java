@@ -17,6 +17,7 @@ public class HuffmanCell
     private JLabel label;
     private HuffmanNode node;
     private JTextArea bitTextArea;
+    private JLabel bitLabel;
 
     /**
      * @return the label
@@ -64,6 +65,22 @@ public class HuffmanCell
     public void setBitTextArea(JTextArea bitTextArea)
     {
         this.bitTextArea = bitTextArea;
+    }
+
+    /**
+     * @return the bitLabel
+     */
+    public JLabel getBitLabel()
+    {
+        return bitLabel;
+    }
+
+    /**
+     * @param bitLabel the bitLabel to set
+     */
+    public void setBitLabel(JLabel bitLabel)
+    {
+        this.bitLabel = bitLabel;
     }
     
 }

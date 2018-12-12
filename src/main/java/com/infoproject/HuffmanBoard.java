@@ -18,7 +18,6 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.Timer;
 import utils.ArrayParserUtils;
@@ -49,6 +48,7 @@ public class HuffmanBoard extends JPanel implements ActionListener{
     private final int INITIAL_Y = FRAME_HEIGHT - 500;
     private final int DELAY = 25;
     private List<Line> lineList;
+//    private List<JTextField> boxList;
 
     private Timer timer;
     private int x, y;
@@ -167,6 +167,12 @@ public class HuffmanBoard extends JPanel implements ActionListener{
             }
             button.setText("clear");
             add(next);
+            //TODO: add input bit boxes here
+//            if(boxList != null && boxList.size() > 0){
+//                for(JTextField box : boxList){
+//                    add(box);
+//                }
+//            }
         }
         //TODO: display talking bubbles from R2 in this section
         //TODO: add C3P0 on the left to talk to R2 about Huffman
@@ -211,12 +217,16 @@ public class HuffmanBoard extends JPanel implements ActionListener{
                                 remove(next);
                                 button.setText("Huffman Encode");
                             }
+//                            for(JTextField b : boxList){
+//                                remove(b);
+//                            }
                         }
                         demoLabels = huffDemo.createDemoLabels();
                         next = huffDemo.getNextButton();
                         
                         //get list of Lines in Demo Component and paint them in paintComponent
                         setLineList(huffDemo.lineList);
+//                        setBoxList(huffDemo.boxes);
                         
                         //Calculate Entropy
                         double[] ent = EntropyCalculator.calculateEntropyOfEach(p);
@@ -281,4 +291,20 @@ public class HuffmanBoard extends JPanel implements ActionListener{
     {
         this.lineList = lineList;
     }
+
+//    /**
+//     * @return the boxList
+//     */
+//    public List<JTextField> getBoxList()
+//    {
+//        return boxList;
+//    }
+//
+//    /**
+//     * @param boxList the boxList to set
+//     */
+//    public void setBoxList(List<JTextField> boxList)
+//    {
+//        this.boxList = boxList;
+//    }
 }

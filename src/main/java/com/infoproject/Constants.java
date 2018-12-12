@@ -16,6 +16,7 @@ public class Constants {
     public static final int TEXT_AREA_HEIGHT = 25;
     public static final int BUTTON_WIDTH = 300;
     public static final int BUTTON_HEIGHT = 30;
+//    public static final int BIT_BOX_WIDTH = 25;
     
     public static final int MAX_CHAR = 6;
     

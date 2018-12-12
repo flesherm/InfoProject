@@ -23,6 +23,8 @@ public class HuffmanDemoComponent
     private final String[] ensemble;
     public HuffmanCell[][] cells;
     public final List<Line> lineList = new ArrayList<>();
+    private final List<JLabel> bitList = new ArrayList<>();
+//    public final List<JTextField> boxes = new ArrayList<>();
     private JButton next;
     private static final int W = 60;
     private static final int X = TEXT_AREA_X - 50;
@@ -44,6 +46,8 @@ public class HuffmanDemoComponent
         List<JLabel> labels = new ArrayList<>();
         addLabels(labels);
         createLines();
+        addBitLabels(labels);
+        addEncodingsLabel(labels);
         return labels;
     }
     
@@ -96,10 +100,12 @@ public class HuffmanDemoComponent
                                 cells[i][col].setNode(parent);
                                 cells[i][col].getNode().isParent = true;
                                 temp.setText(cells[i][col].getNode().prob + "");
+//                                createBitLabel(cells[i][col-1]);
                             }else if(isSecondLowest(col-1, child)){
                                 cells[i][col].setNode(parent);
                                 cells[i][col].getNode().isParent = true;
                                 temp.setText(cells[i][col].getNode().prob + "");
+//                                createBitLabel(cells[i][col-1]);
 //                                temp.setText("");
                             }else{
                                 cells[i][col].setNode(child);
@@ -163,6 +169,20 @@ public class HuffmanDemoComponent
         }
     }
     
+//    private void changeTreeNodeBitString(HuffmanNode rootNode, HuffmanNode nodeToChange, 
+//            String bitString){
+//        if(rootNode.equals(nodeToChange)){
+//            rootNode.setBitString(bitString);
+//        }
+//        if(rootNode.getLeft() != null){
+//            changeTreeNodeBitString(rootNode.getLeft(), nodeToChange, bitString);
+//        }
+//        
+//        if(rootNode.getRight() != null){
+//            changeTreeNodeBitString(rootNode.getLeft(), nodeToChange, bitString);
+//        }
+//    }
+    
     private void fillStartingCells(){
         for(int i = 1; i < cells.length; i++){
             cells[i][0] = new HuffmanCell();
@@ -198,7 +218,17 @@ public class HuffmanDemoComponent
 //        topRightOne.setForeground(maize);
         labels.add(topRightOne);
         // add encodings to display
-        EncodingsLabelTextCreator enc = new EncodingsLabelTextCreator(root);
+//        EncodingsLabelTextCreator enc = new EncodingsLabelTextCreator(root);
+//        JLabel encodings = new JLabel(enc.getLabelText());
+//        encodings.setBounds(next.getX() + next.getWidth() + 40, next.getY() - next.getHeight() / 2,
+//                W*10, W);
+//        labels.add(encodings);
+    }
+    
+    private void addEncodingsLabel(List<JLabel> labels){
+        // add encodings to display
+//        EncodingsLabelTextCreator enc = new EncodingsLabelTextCreator(root);
+        EncodingsLabelCreator enc = new EncodingsLabelCreator(cells);
         JLabel encodings = new JLabel(enc.getLabelText());
         encodings.setBounds(next.getX() + next.getWidth() + 40, next.getY() - next.getHeight() / 2,
                 W*10, W);
@@ -210,36 +240,60 @@ public class HuffmanDemoComponent
         for (int row=1; row < cells.length; row++){
             for (int col=2; col < cells[row].length; col++){
                 //deal with all lines but last row to 1.0
+               
                 HuffmanCell current = cells[row][col];
                 if(!current.getLabel().getText().isEmpty()){
                     HuffmanCell child = cells[row][col-1];
-                    //create Line for all back to previous child
+//                    //create Line for all back to previous child
                     createLine(child, current);
                     for(int r = 1; r < cells.length; r++){
                         HuffmanCell sec = cells[r][col-1];
                         if(!sec.getLabel().getText().isEmpty() 
                                 && (isSecondLowest(col-1, sec.getNode()) 
                             || isLowest(col-1, sec.getNode()))){
-                                //TODO: set Input Box HERE for straight line lowest
-                                
+                                if(isLowest(col-1, sec.getNode())){
+                                    sec.getNode().setBitString("1");
+//                                    changeTreeNodeBitString(root, sec.getNode(),"1");
+                                    createBitLabel(sec, false);
+                                }else if(isSecondLowest(col-1, sec.getNode())){
+                                    sec.getNode().setBitString("0");
+//                                    changeTreeNodeBitString(root, sec.getNode(),"0");
+                                    createBitLabel(sec, false);
+                                }
                                 if(sec.getNode().getParent().equals(
                                     current.getNode()) && r != row 
                                         && !sec.getLabel().getText().isEmpty()){
-                                    //create diagonal line if one of lowest
-                                    //TODO: set Input Box HERE for diagonal line lowest
+                                    if(isLowest(col-1, sec.getNode()) 
+                                            && sec.getNode().getBitString().isEmpty()){
+                                        sec.getNode().setBitString("1");
+//                                        changeTreeNodeBitString(root, sec.getNode(),"1");
+                                        createBitLabel(sec, true);
+                                    }else if(isSecondLowest(col-1, sec.getNode())
+                                            && sec.getNode().getBitString().isEmpty()){
+                                        sec.getNode().setBitString("0");
+//                                        changeTreeNodeBitString(root, sec.getNode(),"0");
+                                        createBitLabel(sec, true);
+                                    }
                                     HuffmanCell parent = current;
                                     createLine(sec, parent);
+                                }
                             }
-                        }
                     }
                     if(col == cells[row].length-1){
                         //add lines at end of last row
+                        //TODO: add last column textBox
                         JLabel l = current.getLabel();
                         int x1 = l.getX() + l.getWidth() / 2;
                         int y1 = l.getY() + l.getHeight() / 2;
                         int x2 = x1 + l.getWidth() / 2;
                         int y2 = cells[1][cells[1].length - 1].getLabel().getY() + W/2;
                         Line line = new Line(x1,y1,x2,y2);
+//                        cells[1][col].getNode().setBitString("1");
+////                        changeTreeNodeBitString(root, cells[1][cells[1].length - 1].getNode(),"1");
+//                        createBitLabel(cells[1][cells[1].length - 1], false);
+                        cells[row][col].getNode().setBitString("0");
+//                        changeTreeNodeBitString(root, cells[2][cells[2].length - 1].getNode(),"0");
+                        createBitLabel(cells[row][cells[2].length - 1], true);
                         lineList.add(line);
                     }
                 }
@@ -259,6 +313,64 @@ public class HuffmanDemoComponent
                 Line line = new Line(x1,y1,x2,y2);
                 lineList.add(line);
     }
+    
+    public void createBitLabel(HuffmanCell cell, boolean isDiagonal){
+        String bitString = cell.getNode().getBitString();
+        if(bitString != null && !bitString.isEmpty() 
+                && (bitString.equals("1") || bitString.equals("0"))){
+             JLabel cLabel = cell.getLabel();
+            if(isDiagonal){
+                JLabel l = new JLabel(bitString);
+                l.setBounds(cLabel.getX()+W-W/2, 
+                        cLabel.getY(), 
+                        W, W);
+                bitList.add(l); 
+            }else{
+                JLabel l = new JLabel(bitString);
+                l.setBounds(cLabel.getX()+W/2, 
+                        cLabel.getY()-5, 
+                        W, W);
+                bitList.add(l);
+            }
+        }
+    }
+    
+    private void addBitLabels(List<JLabel> labels){
+        for(JLabel bitLabel : bitList){
+            labels.add(bitLabel);
+        }
+    }
+    
+    
+    
+//    public void createTextBox(JLabel label, boolean isLowest){
+//        //if not isLowest means it is secondLowest
+//        JTextField bitBox = new JTextField();
+//    
+//        if(isLowest){
+//            //create bitBox on top of and in the middle of straight across line
+//            bitBox.setBounds(label.getX() + label.getWidth()/2, 
+//                    label.getY() - Constants.BIT_BOX_WIDTH - 10, 
+//                Constants.BIT_BOX_WIDTH, Constants.BIT_BOX_WIDTH);
+//        }else{
+//            //create bitBox at bottom of diagonal line
+//            bitBox.setBounds(label.getX() + label.getWidth()/2, 
+//                    label.getY() + label.getHeight(), 
+//                Constants.BIT_BOX_WIDTH, Constants.BIT_BOX_WIDTH);
+//        }
+//        bitBox.requestFocusInWindow();
+////        bitBox.setCaretPosition(5);
+//        bitBox.addKeyListener(new KeyAdapter() {
+//            @Override
+//            public void keyTyped(KeyEvent e) { 
+//                if (bitBox.getText().length() >= 1 ){ // limit textfield to 3 characters
+//                    e.consume();
+//                    System.out.println(e.getKeyChar());
+//                }
+//            }  
+//        });
+//        boxes.add(bitBox);
+//    }
 
     /**
      * @return the next

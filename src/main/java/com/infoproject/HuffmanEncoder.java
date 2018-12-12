@@ -62,8 +62,8 @@ public class HuffmanEncoder
         //create New HuffmanNode that probs equals sum of two lowest Nodes
             HuffmanNode lowestProbNode = (HuffmanNode) pq.poll();
             HuffmanNode secondLowestProbNode = (HuffmanNode) pq.poll();
-            lowestProbNode.setBitString("1"); //right set to 1 by default
-            secondLowestProbNode.setBitString("0"); //left set to 0 by default
+            lowestProbNode.setBitString(""); //right set to 1 by default
+            secondLowestProbNode.setBitString(""); //left set to 0 by default
             double newNodeProb = lowestProbNode.prob + secondLowestProbNode.prob;
             String newNodeChar = lowestProbNode.character + secondLowestProbNode.character;
             HuffmanNode newNode = new HuffmanNode(newNodeProb, newNodeChar);

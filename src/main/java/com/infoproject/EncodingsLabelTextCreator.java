@@ -14,7 +14,7 @@ import java.util.PriorityQueue;
 public class EncodingsLabelTextCreator
 {
     private String labelText = "{ ";
-    private PriorityQueue leafQ = new PriorityQueue(new AlphComparator());
+    private final PriorityQueue leafQ = new PriorityQueue(new AlphComparator());
     HuffmanNode root;
     
     public EncodingsLabelTextCreator(HuffmanNode root){
